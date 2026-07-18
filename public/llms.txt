@@ -1,0 +1,14 @@
+# Wickra Pico
+
+> Wickra's O(1) indicator core running bare-metal on a $5 Raspberry Pi Pico — the LED blinks on the EMA cross. An embedded replay feed streams tick-by-tick through the no_std Wickra signal kernel (an EMA(9)/EMA(21) cross); on a signal, a GPIO LED toggles. A hardware showcase, not a library.
+
+Wickra Pico runs the indicator math no_std on an RP2040 — no OS, no allocator, no heap, forbid(unsafe_code). No other technical-analysis stack runs without an operating system. The on-device signal sequence is verified byte-identical to a std host reference — cross-target determinism, the same guarantee the rest of the ecosystem makes across languages. The no_std indicator kernel comes from wickra-embed's 5 indicators, consumed as a git dependency. There is nothing to install from a package registry; a release builds a flashable RP2040 firmware image (.uf2). Released under the MIT OR Apache-2.0 license.
+
+## Source and firmware
+- [GitHub](https://github.com/wickra-lib/wickra-pico): Source, issues, and firmware releases.
+- [Releases](https://github.com/wickra-lib/wickra-pico/releases): Flashable RP2040 firmware image (.uf2).
+
+## Ecosystem
+- [wickra-embed](https://github.com/wickra-lib/wickra-embed): The no_std indicator kernel Wickra Pico runs.
+- [Wickra](https://wickra.org): The full std streaming-indicator library.
+- [Docs](https://docs.wickra.org): Documentation for the Wickra core.

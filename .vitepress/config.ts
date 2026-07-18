@@ -1,0 +1,157 @@
+import { defineConfig } from 'vitepress'
+import wasm from 'vite-plugin-wasm'
+import topLevelAwait from 'vite-plugin-top-level-await'
+
+// JSON-LD structured data (Organization + SoftwareApplication) so search
+// engines and LLM crawlers can resolve the product's entity, ownership, and
+// where it is published. Emitted once in the document <head> below.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://pico.wickra.org/#organization',
+      name: 'Wickra',
+      url: 'https://pico.wickra.org/',
+      logo: 'https://pico.wickra.org/wickra-mark.svg',
+      sameAs: [
+        'https://github.com/wickra-lib/wickra-pico',
+        'https://github.com/wickra-lib/wickra',
+        'https://wickra.org/',
+      ],
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://pico.wickra.org/#software',
+      name: 'Wickra Pico',
+      url: 'https://pico.wickra.org/',
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Bare metal (RP2040 / Raspberry Pi Pico)',
+      programmingLanguage: ['Rust'],
+      description:
+        'the Wickra O(1) indicator core running bare-metal on a $5 Raspberry Pi Pico — the LED blinks on the EMA cross. A no_std hardware showcase.',
+      license: 'https://github.com/wickra-lib/wickra-pico#license',
+      publisher: { '@id': 'https://pico.wickra.org/#organization' },
+    },
+  ],
+}
+
+export default defineConfig({
+  title: 'Wickra Pico',
+  description:
+    'the Wickra O(1) indicator core running bare-metal on a $5 Raspberry Pi Pico — the LED blinks on the EMA cross. A no_std hardware showcase.',
+  lang: 'en-US',
+  cleanUrls: true,
+
+  // Served at the domain root (pico.wickra.org via Cloudflare Pages).
+  base: '/',
+
+  sitemap: { hostname: 'https://pico.wickra.org' },
+
+  // README.md is repo documentation, not a site page — keep it out of the build.
+  srcExclude: ['README.md'],
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/wickra-mark.svg' }],
+    ['link', { rel: 'icon', href: '/favicon.ico', sizes: 'any' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16.png' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
+    ['link', { rel: 'manifest', href: '/site.webmanifest' }],
+    ['meta', { name: 'theme-color', content: '#0ea5e9' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'Wickra Pico — the indicator core, bare-metal on a $5 chip' }],
+    [
+      'meta',
+      {
+        property: 'og:description',
+        content:
+          'An embedded replay feed streams through the no_std Wickra kernel; on an EMA cross, a GPIO LED toggles. Byte-identical to a std host reference.',
+      },
+    ],
+    ['meta', { property: 'og:image', content: 'https://pico.wickra.org/og-banner.webp' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: 'https://pico.wickra.org/og-banner.webp' }],
+    ['script', { type: 'application/ld+json' }, JSON.stringify(structuredData)],
+  ],
+
+  transformPageData(pageData) {
+    const path = pageData.relativePath.replace(/(?:index)?\.md$/, '')
+    const canonical = `https://pico.wickra.org/${path}`
+    pageData.frontmatter.head ??= []
+    pageData.frontmatter.head.push(
+      ['link', { rel: 'canonical', href: canonical }],
+      ['meta', { property: 'og:url', content: canonical }],
+    )
+  },
+
+  themeConfig: {
+    siteTitle: 'Wickra Pico',
+    logo: { src: '/wickra-mark.svg', alt: 'Wickra Pico' },
+    logoLink: 'https://wickra.org/',
+
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Demo', link: '/demo' },
+      { text: 'Live', link: 'https://live.wickra.org' },
+      { text: 'Benchmarks', link: '/benchmarks' },
+      { text: 'GitHub', link: 'https://github.com/wickra-lib/wickra-pico' },
+      {
+        text: 'v0.1.0',
+        items: [
+          { text: 'Release notes', link: 'https://github.com/wickra-lib/wickra-pico/releases' },
+          { text: 'Changelog', link: 'https://github.com/wickra-lib/wickra-pico/blob/main/CHANGELOG.md' },
+                  ],
+      },
+      {
+        text: 'Ecosystem',
+        items: [
+          { text: 'Wickra (core)', link: 'https://wickra.org' },
+          { text: 'Docs', link: 'https://docs.wickra.org' },
+          { text: 'Exchange', link: 'https://exchange.wickra.org' },
+          { text: 'Backtest', link: 'https://backtest.wickra.org' },
+          { text: 'Terminal', link: 'https://terminal.wickra.org' },
+          { text: 'Screener', link: 'https://screener.wickra.org' },
+          { text: 'X-Ray', link: 'https://xray.wickra.org' },
+          { text: 'Radar', link: 'https://radar.wickra.org' },
+          { text: 'Copilot', link: 'https://copilot.wickra.org' },
+          { text: 'Shazam', link: 'https://shazam.wickra.org' },
+        ],
+      },
+    ],
+
+    sidebar: {},
+
+    socialLinks: [{ icon: 'github', link: 'https://github.com/wickra-lib/wickra-pico' }],
+
+    search: { provider: 'local' },
+
+    outline: { level: [2, 3], label: 'On this page' },
+
+    lastUpdated: { text: 'Updated', formatOptions: { dateStyle: 'medium' } },
+  },
+
+  markdown: {
+    theme: { light: 'github-light', dark: 'github-dark' },
+    lineNumbers: false,
+  },
+
+  vite: {
+    // wickra-wasm is a wasm-pack `--target bundler` build: its JS glue does
+    // `import * as wasm from './wickra_wasm_bg.wasm'` and expects the bundler
+    // to instantiate the module and expose its exports. vite-plugin-wasm does
+    // exactly that, and vite-plugin-top-level-await handles the top-level await
+    // the wasm init emits.
+    plugins: [wasm(), topLevelAwait()],
+    optimizeDeps: {
+      // esbuild's dep pre-bundling can't follow the .wasm ESM import, so keep
+      // wickra-wasm out of it and let vite-plugin-wasm handle it on demand.
+      exclude: ['wickra-wasm'],
+    },
+    server: {
+      fs: {
+        allow: ['..'],
+      },
+    },
+  },
+})
