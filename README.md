@@ -9,7 +9,7 @@
 
 ---
 
-Source for the Wickra Pico site (**[pico.wickra.org](https://pico.wickra.org)**): hero, per-language API overviews, benchmarks and the in-browser indicator demo.
+Source for the Wickra Pico site (**[pico.wickra.org](https://pico.wickra.org)**): hero, benchmarks and the in-browser indicator demo.
 Built with [VitePress](https://vitepress.dev).
 
 The structure mirrors [webpage](https://github.com/wickra-lib/webpage)

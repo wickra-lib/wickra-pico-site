@@ -95,34 +95,7 @@ export default defineConfig({
       { text: 'Demo', link: '/demo' },
       { text: 'Live', link: 'https://live.wickra.org' },
       { text: 'Benchmarks', link: '/benchmarks' },
-      { text: 'Benchmarks', link: '/benchmarks' },
-      {
-        text: 'API',
-        items: [
-          { text: 'Rust', link: '/api/rust' },
-          { text: 'Python', link: '/api/python' },
-          { text: 'Node', link: '/api/node' },
-          { text: 'WASM', link: '/api/wasm' },
-          { text: 'C', link: '/api/c' },
-          { text: 'C#', link: '/api/csharp' },
-          { text: 'Go', link: '/api/go' },
-          { text: 'Java', link: '/api/java' },
-          { text: 'R', link: '/api/r' },
-        ],
-      },
       { text: 'GitHub', link: 'https://github.com/wickra-lib/wickra-pico' },
-      {
-        text: 'Links',
-        items: [
-        ],
-      },
-      {
-        text: 'v0.1.0',
-        items: [
-          { text: 'Release notes', link: 'https://github.com/wickra-lib/wickra-pico/releases' },
-          { text: 'Changelog', link: 'https://github.com/wickra-lib/wickra-pico/blob/main/CHANGELOG.md' },
-        ],
-      },
       {
         text: 'v0.1.0',
         items: [

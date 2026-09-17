@@ -68,5 +68,7 @@ for (const price of liveFeed) {
 ```
 
 The same shape works in Node and Python — the core's own
-[API pages](https://wickra.org/api/wasm) carry each binding's idiomatic snippet;
-the [API pages here](/api/rust) are Wickra Pico's.
+[API pages](https://wickra.org/api/wasm) carry each binding's idiomatic snippet.
+Wickra Pico itself has no bindings: it is the same math running bare-metal,
+and its [README](https://github.com/wickra-lib/wickra-pico#readme) is where it
+starts.
