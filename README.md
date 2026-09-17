@@ -16,7 +16,7 @@ The structure mirrors [webpage](https://github.com/wickra-lib/webpage)
 (wickra.org) and [wickra-docs](https://github.com/wickra-lib/wickra-docs)
 (docs.wickra.org): shared header, footer, theme, badge pipeline and workflows.
 **Wickra Pico** — the O(1) indicator core running bare-metal on a $5 Raspberry Pi Pico — the LED blinks on the EMA cross. The library itself is
-[`wickra-lib/wickra-pico`](https://github.com/wickra-lib/wickra-pico); its README carries the install line and a quick start for every language.
+[`wickra-lib/wickra-pico`](https://github.com/wickra-lib/wickra-pico); its README is where the firmware starts.
 
 ## Develop
 
