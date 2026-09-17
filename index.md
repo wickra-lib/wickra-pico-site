@@ -89,3 +89,29 @@ chart would compute.
 
 > Wickra Pico is a hardware demo, not a trading system, and comes with no warranty —
 > use at your own risk.
+
+<script setup>
+const installTabs = [
+  { label: 'C', lang: 'bash', code: '# prebuilt header + library from GitHub releases:\n# github.com/wickra-lib/wickra-pico/releases' },
+]
+</script>
+
+## Install
+
+The same engine from every language — native Rust, Python, Node.js and WASM, plus a C
+ABI for C, C++, C#, Go, Java and R.
+
+<InstallTabs :tabs="installTabs" />
+
+The [API pages](/api/rust) carry a quick start per language; the
+[repository README](https://github.com/wickra-lib/wickra-pico#readme) the same in one place.
+
+## Built on the Wickra core
+
+Wickra Pico is part of the [Wickra](https://wickra.org) ecosystem — one indicator core,
+twenty-three products, the same ten-language binding surface in every one of them,
+checked byte-for-byte by a golden corpus in every repository.
+
+> Wickra Pico is a software library, not a trading system, and gives no financial
+> advice — its outputs are deterministic transforms of the input data and do not
+> predict future returns. Use it at your own risk.
